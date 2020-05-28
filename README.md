@@ -1,4 +1,4 @@
-#Star-Wars.info - Information site about Star Wars saga
+# Star-Wars.info - Information site about Star Wars saga
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
