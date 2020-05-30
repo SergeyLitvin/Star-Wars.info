@@ -6,7 +6,7 @@ class SwapiService {
     async getResource(url) {
         const res = await fetch(this._baseUrl + url);
         if(!res.ok) {
-            throw new Error(` ${url}, received ${res.status}`);
+            throw new Error(`${url}, received ${res.status}`);
         }
         const data = await res.json();
         return data;
@@ -58,17 +58,3 @@ class SwapiService {
         }
     }
 }
-
-const getResService = new SwapiService();
-
-getResService.getAllPeople()
-    .then((people) => {
-        people.forEach((item) => {
-            console.log(item.name);
-        })
-    });
-
-getResService.getPlanet('12')
-    .then((res) => {
-        console.log(res);
-    })
