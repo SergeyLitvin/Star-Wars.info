@@ -1,0 +1,30 @@
+.header {
+    margin-top: 0.5rem;
+    padding-left: 10px;
+    display: flex;
+    justify-content: flex-start;
+    align-content: center;
+    align-items: center;
+}
+
+.header .logo {
+    width: 200px;
+    font-size: 1.6rem;
+    color: #00bc8c;
+    font-weight: 700;
+}
+
+.header .nav {
+    width: 80%;
+}
+
+.header .nav li {
+    list-style: none;
+    margin: 0 0 0 auto;
+    padding: 0.5rem 1rem;
+    border-radius: 3px;
+}
+
+.header ul li:hover {
+    background-color: #444;
+}
