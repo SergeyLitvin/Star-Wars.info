@@ -5,9 +5,9 @@ import './app.css';
 import Header from '../header';
 import ItemList from '../item-list';
 import PersonDetail from '../person-detail';
-import PlanetDetail from '../planet-detail';
+// import PlanetDetail from '../planet-detail';
 import RandomPlanet from '../random-planet';
-import StarshipDetail from '../starship-detail';
+// import StarshipDetail from '../starship-detail';
 
 const App = () => {
     return (

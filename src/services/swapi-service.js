@@ -31,6 +31,7 @@ export default class SwapiService {
         return res.results;
     }
 
+
     async getPlanet(id) {
         const planetId = parseInt(id, 10);
         if(typeof planetId !== 'number' || isNaN(planetId)) {
