@@ -39,19 +39,6 @@ export default class RandomPlanet extends Component {
             });
     }
 
-    // updatePlanet() {
-    //     this.swapiService.getPlanet(7)
-    //         .then((planet) => {
-    //             console.log(planet);
-    //             // name = planet.name;
-    //             // population = planet.population;
-    //             // name = planet.rotationPeriod;
-    //             // name = planet.diameter;
-    //         })
-    // }
-
-    // TODO: fix error get id planet and show image planet
-
     render() {
         const { id, name, population, rotationPeriod, diameter } = this.state;
 
