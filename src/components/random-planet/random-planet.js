@@ -24,8 +24,13 @@ export default class RandomPlanet extends Component {
         console.log('state after planet loaded', planet)
     };
 
+    randomInteger(min, max) {
+        let rand = min + Math.random() * (max + 1 - min);
+        return Math.floor(rand);
+    }
+
     updatePlanet() {
-        const id = 12;
+        const id = this.randomInteger(2, 18);
         this.swapiService
             .getPlanet(id)
             .then((planet) => {
@@ -64,7 +69,6 @@ export default class RandomPlanet extends Component {
                     </ul>
                 </div>
             </div>
-
         );
     }
 }
