@@ -11,26 +11,24 @@ export default class SwapiService {
     }
 
     async getAllPeople(url) {
-        const res = await this.getResource('people/');
-        return res.results;
+        const allPeople = await this.getResource('people/');
+        return allPeople.results;
     }
 
-    async getPerson(id) {
+    async getPeople(id) {
         const peopleId = parseInt(id, 10);
         if(typeof peopleId !== 'number' || isNaN(peopleId)) {
             console.warn('People id must be a number!');
         } else {
-            const res = await this.getResource(`people/${peopleId}`);
-            return res;
+            const people = await this.getResource(`people/${peopleId}`);
+            return this._transformPerson(people);
         }
-
     }
 
     async getAllPlanets(url) {
-        const res = await this.getResource('planets/');
-        return res.results.map(this._transformPlanet);
+        const planets = await this.getResource('planets/');
+        return planets.results.map(this._transformPlanet);
     }
-
 
     async getPlanet(id) {
         const planetId = parseInt(id, 10);
@@ -43,8 +41,8 @@ export default class SwapiService {
     }
 
     async getAllStarships(url) {
-        const res = await this.getResource('starships/');
-        return res.results;
+        const starships = await this.getResource('starships/');
+        return starships.results.map(this._transformStarship);
     }
 
     async getStarship(id) {
@@ -52,17 +50,50 @@ export default class SwapiService {
         if(typeof starshipId !== 'number' || isNaN(starshipId)) {
             console.warn('Starship id must be a number!');
         } else {
-            const res = await this.getResource(`starships/${starshipId}`);
-            return res;
+            const starship = await this.getResource(`starships/${starshipId}`);
+            return this._transformStarship(starship);
         }
     }
 
+    _extractId(item) {
+        const idRegExp = /\/([0-9]*)\/$/;
+        const id = item.url.match(idRegExp)[1];
+        return id;
+    }
+
     _transformPlanet(planet) {
+        console.log(planet);
         return {
+            id: this._extractId(planet),
             name: planet.name,
             population: planet.population,
             rotationPeriod: planet.rotation_period,
             diameter: planet.diameter
+        }
+    }
+
+    _transformStarship(starship) {
+        return {
+            id: this._extractId(starship),
+            name: starship.name,
+            model: starship.model,
+            manufacturer: starship.manufacturer,
+            costInCredits: starship.cost_in_credits,
+            length: starship.length,
+            crew: starship.crew,
+            passengers: starship.passengers,
+            cargoCapacity: starship.cargo_capacity
+        }
+    }
+
+    _transformPerson(person) {
+        return {
+            id: this._extractId(person),
+            name: person.name,
+            gender: person.gender,
+            birthYear: person.birth_year,
+            eyeColor: person.eye_color,
+
         }
     }
 }
