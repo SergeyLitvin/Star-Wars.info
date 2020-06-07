@@ -28,7 +28,7 @@ export default class SwapiService {
 
     async getAllPlanets(url) {
         const res = await this.getResource('planets/');
-        return res.results;
+        return res.results.map(this._transformPlanet);
     }
 
 
@@ -37,8 +37,8 @@ export default class SwapiService {
         if(typeof planetId !== 'number' || isNaN(planetId)) {
             console.warn('Planet id must be a number!');
         } else {
-            const res = await this.getResource(`planets/${planetId}`);
-            return res;
+            const planet = await this.getResource(`planets/${planetId}`);
+            return this._transformPlanet(planet);
         }
     }
 
@@ -54,6 +54,15 @@ export default class SwapiService {
         } else {
             const res = await this.getResource(`starships/${starshipId}`);
             return res;
+        }
+    }
+
+    _transformPlanet(planet) {
+        return {
+            name: planet.name,
+            population: planet.population,
+            rotationPeriod: planet.rotation_period,
+            diameter: planet.diameter
         }
     }
 }
