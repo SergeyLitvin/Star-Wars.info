@@ -21,3 +21,7 @@
 .random-planet .list-group-item .term {
     margin-right: .5rem;
 }
+
+.random-planet .list-group {
+    margin: 1rem 0 0 0;
+}
